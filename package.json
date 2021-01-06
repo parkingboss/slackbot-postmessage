@@ -1,6 +1,6 @@
 {
   "name": "@parkingboss/slackbot-postmessage",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "X-Platform Slack Messages via Bot",
   "main": "index.js",
   "scripts": {
