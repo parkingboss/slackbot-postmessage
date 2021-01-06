@@ -1,0 +1,17 @@
+name: SlackBot postMessage
+description: Send Slack Messages by a Bot
+inputs:
+  token:
+    description: The OAuth token for the Slack Bot making the request
+    required: true
+  request:
+    description: The JSON payload to send Slack. See https://api.slack.com/methods/chat.postMessage
+    required: true
+outputs:
+  status:
+    description: The HTTP Status Code from chat.postMessage
+  response:
+    description: The response from Slack
+runs:
+  using: node12
+  main: index.js

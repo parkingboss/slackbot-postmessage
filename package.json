@@ -1,11 +1,9 @@
 {
-  "name": "@parkingboss/slack-message",
+  "name": "@parkingboss/slackbot-postmessage",
   "version": "1.0.0",
   "description": "X-Platform Slack Messages via Bot",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/parkingboss/slack-message.git"
@@ -23,6 +21,6 @@
   "homepage": "https://github.com/parkingboss/slack-message#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "@actions/github": "^4.0.0"
+    "node-fetch": "^2.6.1"
   }
 }
