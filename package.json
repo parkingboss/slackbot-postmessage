@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "X-Platform Slack Messages via Bot",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "build": "ncc build index.js -o dist/index.js",
+    "preversion": "npm run build",
+    "version": "git add -A dist",
+    "postversion": "git push && git push --tags"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/parkingboss/slack-message.git"
@@ -22,5 +27,8 @@
   "dependencies": {
     "@actions/core": "^1.2.6",
     "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.26.1"
   }
 }
