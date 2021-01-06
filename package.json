@@ -1,0 +1,28 @@
+{
+  "name": "@parkingboss/slack-message",
+  "version": "1.0.0",
+  "description": "X-Platform Slack Messages via Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/parkingboss/slack-message.git"
+  },
+  "keywords": [
+    "Action",
+    "GitHub",
+    "Slack"
+  ],
+  "author": "Parking Boss",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/parkingboss/slack-message/issues"
+  },
+  "homepage": "https://github.com/parkingboss/slack-message#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0"
+  }
+}
