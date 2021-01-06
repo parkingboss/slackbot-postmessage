@@ -15,6 +15,9 @@ async function main() {
 
         core.setOutput('status', status);
         core.setOutput('response', response);
+        if (status >= 400) {
+            core.setFailed(`Slack responded with a failure code: ${status}`);
+        }
     } catch (err) {
         console.error(err);
         core.setFailed(err.message);
@@ -30,12 +33,9 @@ async function postToSlack(token, body) {
         },
         body,
       });
-    if (response.status >= 400) {
-        throw new Error(await response.json());
-    }
     return {
         status: response.status,
-        body: await response.json(),
+        body: await response.text(),
     };
 }
 
