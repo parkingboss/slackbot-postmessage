@@ -1,5 +1,7 @@
 name: SlackBot postMessage
 description: Send Slack Messages by a Bot
+icon: bell
+color: gray-dark
 inputs:
   token:
     description: The OAuth token for the Slack Bot making the request
