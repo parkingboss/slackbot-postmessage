@@ -76,6 +76,22 @@ If the channel is private, you'll need to install the App in that channel.
 
 Please refer to [Slack's documentation](https://api.slack.com/docs/messages) on message formatting. They also have a [message builder](https://api.slack.com/docs/messages/builder) that's great for playing around and previewing messages. Your messages can contain attachments, markdown, buttons, and more.
 
+#### Inputs
+
+This action requires two parameters:
+
+##### token (**required**)
+
+See above, should be provided by a secure method, like Github secrets.
+
+##### request (**required**)
+
+The request body as stringified JSON, see Slack's documentation.
+
+##### verbose (optional)
+
+Pass anything to verbose to make the action "chatty" while it sends your message. Great for debugging.
+
 #### Outputs
 
 This action exposes Slack's response in two fields: `status` and `response`. You'll get these even if the request fails.

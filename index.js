@@ -9,9 +9,10 @@ if (require.main === module) {
 async function main() {
     try {
         const token = core.getInput('token', { required: true }),
-              request = core.getInput('request', { required: true });
+              request = core.getInput('request', { required: true }),
+              verbose = core.getInput('verbose');
 
-        const {status, response} = await postToSlack(token, request);
+        const {status, response} = await postToSlack(token, request, verbose);
 
         core.setOutput('status', status);
         core.setOutput('response', response);
@@ -24,7 +25,10 @@ async function main() {
     }
 }
 
-async function postToSlack(token, body) {
+async function postToSlack(token, body, verbose) {
+    if (verbose) {
+        console.log("Posting to slack:", body);
+    }
     const response = await fetch('https://slack.com/api/chat.postMessage', {
         method: 'POST',
         headers: {
@@ -33,10 +37,26 @@ async function postToSlack(token, body) {
         },
         body,
       });
+
+    const reponseBody = await response.text();
+
+    if (verbose) {
+        console.info("Status:", status);
+        console.info("Response Body:", formatIfJson(reponseBody));
+    }
+
     return {
         status: response.status,
-        body: await response.text(),
+        body: reponseBody,
     };
+}
+
+function formatIfJson(body) {
+    try {
+        return JSON.stringify(JSON.parse(body), null, 2);
+    } catch (err) {
+        return body;
+    }
 }
 
 module.exports = {
