@@ -45,6 +45,7 @@ async function postToSlack(token, body, verbose) {
         body,
       });
 
+    const status = response.status;
     const reponseBody = await response.text();
 
     if (verbose) {
