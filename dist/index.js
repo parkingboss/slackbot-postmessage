@@ -19,15 +19,18 @@ async function main() {
               request = core.getInput('request', { required: true }),
               verbose = core.getInput('verbose');
 
-        const {status, response} = await postToSlack(token, request, verbose);
+        const {ok, error, ts, message} = await postToSlack(token, request, verbose);
 
-        core.setOutput('status', status);
-        core.setOutput('response', response);
-        if (status >= 400) {
-            core.setFailed(`Slack responded with a failure code: ${status}`);
+        if (ok) {
+            core.setOutput("ts", ts);
+            core.setOutput("message", JSON.stringify(message));
+        } else {
+            console.error("Post to Slack Failed with error:", error);
+            core.setOutput("error", error);
+            core.setFailed(`Failed to post to slack. See "error" output for more info`);
         }
     } catch (err) {
-        console.error(err);
+        console.error("Unexpected Error:", err);
         core.setFailed(err.message);
     }
 }
@@ -45,26 +48,13 @@ async function postToSlack(token, body, verbose) {
         body,
       });
 
-    const status = response.status;
-    const reponseBody = await response.text();
+    const responseBody = await response.json();
 
     if (verbose) {
-        console.info("Status:", status);
-        console.info("Response Body:", formatIfJson(reponseBody));
+        console.info("Response Body:", JSON.stringify(reponseBody, null, 2));
     }
 
-    return {
-        status: response.status,
-        body: reponseBody,
-    };
-}
-
-function formatIfJson(body) {
-    try {
-        return JSON.stringify(JSON.parse(body), null, 2);
-    } catch (err) {
-        return body;
-    }
+    return responseBody;
 }
 
 module.exports = {
