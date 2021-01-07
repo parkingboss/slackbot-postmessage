@@ -4,7 +4,7 @@
   "description": "X-Platform Slack Messages via Bot",
   "main": "index.js",
   "scripts": {
-    "build": "ncc build index.js -o dist/index.js",
+    "build": "ncc build index.js -o dist",
     "preversion": "npm run build && git add -A dist && (git commit -m 'Build for Release' || true)",
     "postversion": "git push && git push --tags"
   },
