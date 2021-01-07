@@ -94,9 +94,19 @@ Pass anything to verbose to make the action "chatty" while it sends your message
 
 #### Outputs
 
-This action exposes Slack's response in two fields: `status` and `response`. You'll get these even if the request fails.
+This action exposes Slack's response in several fields.
 
-Status is the HTTP response code. 200-299 if it succeeded. 400 range if there was a problem that's your fault. 500 range if it's Slack's fault.
+##### ts
+
+If successful, the message's timestamp is exposed in the `ts` output variable. It can be used by future calls to reply.
+
+##### message
+
+If successful, the message details are returned as JSON in the `message` output variable.
+
+##### error
+
+If not successful, the slack error message is exposed in the `error` output variable.
 
 ## License
 
